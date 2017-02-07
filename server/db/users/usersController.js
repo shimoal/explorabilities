@@ -1,6 +1,6 @@
 const User = require('./usersModel.js');
 const jwt = require('jsonwebtoken');
-const dbconfig = require('../dbconfig.js');
+// const dbconfig = require('../dbconfig.js');
 
 const controller = {
   signin: function(req, res, next) {

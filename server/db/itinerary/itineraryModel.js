@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-const db = require('../database.js');
-const User = require('../users/usersModel.js');
+// const db = require('../database.js');
+// const User = require('../users/usersModel.js');
 
 const Itinerary = db.define('itinerary', {
   placeID: {

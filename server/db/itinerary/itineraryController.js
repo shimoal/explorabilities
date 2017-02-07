@@ -1,6 +1,6 @@
 const Itinerary = require('./itineraryModel.js');
 const jwt = require('jsonwebtoken');
-const dbconfig = require('../dbconfig.js');
+// const dbconfig = require('../dbconfig.js');
 
 const controller = {
   save: function(req, res, next) {

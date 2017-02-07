@@ -1,8 +1,8 @@
-var cfg = {
-  myLocalDB: 'explore',
-  myLocalDBRole: '',
-  myLocalDBPW: '',
-  secret: 'secret'
-};
+// var cfg = {
+//   myLocalDB: 'explore',
+//   myLocalDBRole: '',
+//   myLocalDBPW: '',
+//   secret: 'secret'
+// };
 
-module.exports = cfg;
+// module.exports = cfg;
