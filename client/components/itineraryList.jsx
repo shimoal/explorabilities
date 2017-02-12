@@ -30,12 +30,12 @@ const ItineraryList = (props) => {
         <p className="save-itinerary save-text">{props.saveMessage}</p>
       </div>
       <ul>
-        {Object.keys(props.list).map((key) => (
+        {props.list.map((key) => (
             <ItineraryListItem
-              key={props.list[key].place_id}
-              place={props.list[key]}
+              key={key.place_id}
+              place={key}
               /* Binding list[key].id as the first argument when RemoveItem is called */
-              removeItem={props.removeItem.bind(this, props.list[key].place_id)}
+              removeItem={props.removeItem.bind(this, key.place_id)}
             />
           ))}
       </ul>

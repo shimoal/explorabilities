@@ -38,8 +38,8 @@ export default class MyPlaces extends React.Component {
 
           </div>
           <ItineraryList
-            query={this.state.currentItinerary}
-            list={this.state.currentItinerary.places}
+            query={this.state.currentItinerary} //object
+            list={this.state.currentItinerary.places}//array
             saveMessage={this.state.saveMessage}
             // sendMail={this.state.sendMail}
             removeItem={this.removeItem.bind(this)}
@@ -165,7 +165,6 @@ export default class MyPlaces extends React.Component {
 
   getItineraries() {
     const context = this;
-    console.log('getItineraries');
     axios.get('/itinerary', {
       params: {
         token: localStorage.token
@@ -180,7 +179,7 @@ export default class MyPlaces extends React.Component {
   }
 
   drawMark() {
-    console.log(this.state.itineraries);
+    // console.log(this.state.itineraries);
   }
 
   buildItineraries(data) {

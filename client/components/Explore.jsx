@@ -11,10 +11,11 @@ export default class Explore extends React.Component {
     this.state = {
       place: {},
       query: '',
-      itinerary: {},
+      itinerary: [],
       saveMessage: ''
     };
   }
+
   render() {
     return (
       <div id="exploreContainer">
@@ -43,22 +44,29 @@ export default class Explore extends React.Component {
     this.setState({
       place: {},
       query: query,
-      itinerary: {},
+      itinerary: [],
       saveMessage: ''
     });
   }
 
   addItem() {
-    this.state.itinerary[this.state.place.place_id] = this.state.place;
+    this.state.itinerary.push(this.state.place);
     this.setState({
       itinerary: this.state.itinerary
     });
   }
 
   removeItem(key) {
-    delete this.state.itinerary[key];
+    var places = this.state.currentItinerary.places;
+
+    for (var i = 0; i < places.length; i++) {
+      if (places[i].place_id === key) {
+        places.splice(i, 1);
+      }
+    }
+
     this.setState({
-      itinerary: this.state.itinerary,
+      currentItinerary: this.state.currentItinerary,
       saveMessage: ''
     });
   }
@@ -67,11 +75,15 @@ export default class Explore extends React.Component {
     const context = this;
     console.log(this.state.query, 'query');
 
+    var placeIds = this.state.itinerary.map(function (place) {
+      return place.place_id;
+    })
+
     axios.post('/itinerary', {
       token: localStorage.token,
       itineraryID: this.state.query.place_id,
       itineraryName: this.state.query.name,
-      placeIDs: Object.keys(this.state.itinerary)
+      placeIDs: placeIds
     })
     .then(function(res) {
       if (res.status === 200) {
