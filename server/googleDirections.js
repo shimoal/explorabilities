@@ -26,6 +26,7 @@ var getOrderedPlaces = function(req, res, next) {
   });
 
   request('https://maps.googleapis.com/maps/api/directions/json?' +
+          'mode=walking' +
           'origin=place_id:' + startingPointId + 
           '&destination=place_id:' + startingPointId + 
           '&waypoints=optimize:true'  + places + 
