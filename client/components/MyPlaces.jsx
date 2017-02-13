@@ -180,7 +180,7 @@ export default class MyPlaces extends React.Component {
   }
 
   drawMark() {
-    console.log(this.state.itineraries);
+    // console.log(this.state.itineraries);
   }
 
   buildItineraries(data) {

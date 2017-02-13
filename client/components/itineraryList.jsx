@@ -4,6 +4,7 @@ import ItineraryListItem from './itineraryListItem.jsx';
 const ItineraryList = (props) => {
   let headerText = 'Itinerary';
   let saveButton = '';
+  let itineraries = '';
 
   if (props.query.name) {
     headerText += ' for ' + props.query.name;
@@ -21,6 +22,21 @@ const ItineraryList = (props) => {
     var emailButton = <button className="itinerary-btn email-btn" onClick={props.emailItinerary}>Email Itinerary</button>;
   }
 
+  if (props.list) {
+    itineraries = Object.keys(props.list).map(function (key) {
+      if (props.list[key] !== null) {
+            return (  <ItineraryListItem
+              key={props.list[key].place_id}
+              place={props.list[key]}
+              /* Binding list[key].id as the first argument when RemoveItem is called */
+              removeItem={props.removeItem.bind(this, props.list[key].place_id)}
+            />
+            )
+      }
+
+          });
+  }
+
   return (
     <div id="itinerary">
       <div className="clearfix">
@@ -30,14 +46,7 @@ const ItineraryList = (props) => {
         <p className="save-itinerary save-text">{props.saveMessage}</p>
       </div>
       <ul>
-        {Object.keys(props.list).map((key) => (
-            <ItineraryListItem
-              key={props.list[key].place_id}
-              place={props.list[key]}
-              /* Binding list[key].id as the first argument when RemoveItem is called */
-              removeItem={props.removeItem.bind(this, props.list[key].place_id)}
-            />
-          ))}
+        {itineraries}
       </ul>
       {emailButton}
     </div>
